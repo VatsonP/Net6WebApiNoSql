@@ -73,10 +73,8 @@ namespace FlightPlanApi.Data
             return flightPlan;
         }
 
-        public async Task<bool> FileFlightPlan(FlightPlan flightPlan)
+        public async Task<TransactionResult> FileFlightPlan(FlightPlan flightPlan)
         {
-            bool res;
-
             var collection = GetCollection("pluralsight", "flight_plans");
 
             var document = new BsonDocument
@@ -98,31 +96,25 @@ namespace FlightPlanApi.Data
                 {"number_onboard", flightPlan.NumberOnBoard }
             };
 
+            TransactionResult tResult = TransactionResult.BadRequest;
             try
             {
                 await collection.InsertOneAsync(document);
-                res = true;
+
+                if (document["_id"].IsObjectId)
+                    tResult = TransactionResult.Success;
             }
             catch (Exception e)
             {
-                res = false; 
+                tResult = TransactionResult.ServerError;
+                
                 Console.WriteLine(e.Message);
             }
 
-            return res;
+            return tResult;
         }
 
-        public async Task<bool> DeleteFlightPlanById(string flightPlanId)
-        {
-            var collection = GetCollection("pluralsight", "flight_plans");
-
-            var result = await collection.DeleteOneAsync(
-                Builders<BsonDocument>.Filter.Eq("flight_plan_id", flightPlanId));
-
-            return result.DeletedCount > 0;
-        }
-
-        public async Task<bool> UpdateFlightPlan(string flightPlanId, FlightPlan flightPlan)
+        public async Task<TransactionResult> UpdateFlightPlan(string flightPlanId, FlightPlan flightPlan)
         {
             var collection = GetCollection("pluralsight", "flight_plans");
 
@@ -144,10 +136,49 @@ namespace FlightPlanApi.Data
                 .Set("fuel_minutes", flightPlan.FuelMinutes)
                 .Set("numberOnBoard", flightPlan.NumberOnBoard);
 
-            var result = await collection.UpdateOneAsync(filter, update);
 
-            return result.ModifiedCount > 0;
+            TransactionResult tResult = TransactionResult.BadRequest;
+            try
+            {
+                var result = await collection.UpdateOneAsync(filter, update);
+
+                if (result.MatchedCount == 0)
+                {
+                    tResult = TransactionResult.NotFound;
+                }
+                else
+                if (result.ModifiedCount > 0)
+                {
+                    tResult = TransactionResult.Success;
+                }
+            }
+            catch (Exception e)
+            {
+                tResult = TransactionResult.ServerError;
+                Console.WriteLine(e.Message);
+            }
+
+            return tResult;
         }
 
+        public async Task<bool> DeleteFlightPlanById(string flightPlanId)
+        {
+            var collection = GetCollection("pluralsight", "flight_plans");
+
+            bool bResult = false;
+            try
+            {
+                var result = await collection.DeleteOneAsync(
+                Builders<BsonDocument>.Filter.Eq("flight_plan_id", flightPlanId));
+
+                bResult = (result.DeletedCount > 0);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return bResult;
+        }
     }
 }
