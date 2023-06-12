@@ -1,0 +1,13 @@
+Flight Plan data generator:
+
+https://www.mockaroo.com/d5a655d0
+
+Generate data using cURL with the following command:
+
+curl "https://api.mockaroo.com/api/d5a655d0?count=25&key=" > "Flight Plan.json"
+
+You neeed to set api key, 
+otherwise you'll get Flight Plan.json file with error string:
+```
+{"error":"Invalid API Key"}
+```

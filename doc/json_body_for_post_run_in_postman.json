@@ -1,0 +1,17 @@
+{
+    "flight_plan_id": "",
+    "aircraft_identification": "N773DA",
+    "aircraft_type": "PE55 Beechcraft 55 Baron",
+    "airspeed": 190,
+    "altitude": 15000,
+    "flight_type": "IFR",
+    "fuel_hours": 5,
+    "fuel_minutes": 20,
+    "departure_time": "2022-10-15T00:26:45Z",
+    "estimated_arrival_time": "2022-10-16T03:49:45Z",
+    "departing_airport": "KCAK",
+    "arrival_airport": "KSLS",
+    "route": "KCAK VWV V6 GIL V228 OBK J100 DBQ J82 FOD Q122 ONl J94 OCS V142 WEGEM KSLC",
+    "remarks": "New flight plan for POST demo",
+    "number_onboard": 6
+}
