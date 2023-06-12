@@ -1,0 +1,21 @@
+https://www.scottbrady91.com/oauth
+
+
+Hi, I'm Scott Brady.
+
+I'm an Engineering Manager at ClearBank and a Pluralsight Author. 
+I specialize in IdentityServer and all things Authentication, Identity, OAuth, and OpenID Connect.
+
+
+In my day job at ClearBank, I am the Engineering Manager for their Faster Payments product, with my team affectionately known as “Team Lemur”. 
+I am currently taking a break from my identity niche to focus on my leadership skills.
+
+I mainly work with C# and ASP.NET Core, but otherwise, I dabble with languages such as Kotlin, Go, and Typescript.
+
+I sometimes make an appearance on the speaking circuit, whether it's user groups, conferences, or recorded.
+
+To learn more about me and what I’m up to, check out my:
+
+Polywork timeline https://timeline.scottbrady91.com/
+
+LinkedIn https://www.linkedin.com/in/scottbrady91
