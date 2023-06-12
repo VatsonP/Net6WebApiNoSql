@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using FlightPlanApi.Data;
 using FlightPlanApi.Models;
+
 
 namespace FlightPlanApi.Controllers
 {
@@ -16,6 +19,7 @@ namespace FlightPlanApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> FlightPlanList()
         { 
             var flightPlanList = await _database.GetAllFlightPlans();
@@ -29,6 +33,7 @@ namespace FlightPlanApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("{flightPlanId}")]
         public async Task<IActionResult> GetFlightPlanById (string flightPlanId)
         {
@@ -43,6 +48,7 @@ namespace FlightPlanApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("file")]
         public async Task<IActionResult> FileFlightPlan(FlightPlan flightPlan)
         {
@@ -62,6 +68,7 @@ namespace FlightPlanApi.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateFlightPlan(FlightPlan flightPlan)
         {
             var tUpdResult = await _database.UpdateFlightPlan(flightPlan.FlightPlanId, flightPlan);
@@ -80,6 +87,7 @@ namespace FlightPlanApi.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("{flightPlanId}")]
         public async Task<IActionResult> DeleteFlightPlanById(string flightPlanId)
         {
@@ -106,6 +114,7 @@ namespace FlightPlanApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("route/{flightPlanId}")]
         public async Task<IActionResult> GetFlightPlanRoute(string flightPlanId)
         {

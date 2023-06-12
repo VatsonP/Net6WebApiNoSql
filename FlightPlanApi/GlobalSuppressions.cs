@@ -9,3 +9,6 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Naming", "VSSpell001:Spell Check", Justification = "<Pending>", Scope = "namespace", Target = "~N:FlightPlanApi.Models")]
 [assembly: SuppressMessage("Naming", "VSSpell001:Spell Check", Justification = "<Pending>", Scope = "type", Target = "~T:FlightPlanApi.Data.MongoDbDatabase")]
 [assembly: SuppressMessage("Naming", "VSSpell001:Spell Check", Justification = "<Pending>", Scope = "member", Target = "~M:FlightPlanApi.Controllers.FlightPlanController.GetFlightPlanTimeEnroute(System.String)~System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.IActionResult}")]
+[assembly: SuppressMessage("Naming", "VSSpell001:Spell Check", Justification = "<Pending>", Scope = "namespace", Target = "~N:FlightPlanApi.Controllers")]
+[assembly: SuppressMessage("Naming", "VSSpell001:Spell Check", Justification = "<Pending>", Scope = "member", Target = "~P:FlightPlanApi.Authentication.User.Username")]
+[assembly: SuppressMessage("Naming", "VSSpell001:Spell Check", Justification = "<Pending>", Scope = "member", Target = "~M:FlightPlanApi.Authentication.UserService.Authenticate(System.String,System.String)~System.Threading.Tasks.Task{FlightPlanApi.Authentication.User}")]
