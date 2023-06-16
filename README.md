@@ -23,3 +23,20 @@ Putting a Front End on It 		14m 47s
 
 
 Link to course here https://www.pluralsight.com/courses/asp-dot-net-core-6-webapi-using-nosql-databases
+
+To Run and Test projects:
+
+
+1)  Start MongoDB service (by run "START_mongodb_srv.bat") for access to DB data scheme for FlightPlanApi project.
+
+2) FlightPlanApi
+
+   - Open "FlightPlanApi.sln" with Visual Studio 2022, than click Run FlightPlanApi project.
+     Browser will be started and opened on "https://localhost:3001/swagger/index.html" page with Swagger interface.
+   
+3) FlightPlanUi
+
+   - Open folder "...\FlightPlanUi" with Visual Studio Code, than click on flightplanlist.html file on left files list panel.
+     Right mouse click and in context menu click on "Open with Live Server".
+     Browser will be started and opened on "http://127.0.0.1:5500/flightplanlist.html" page with static Html API interface.
+     Click on "Load Flight Plans" button to get all flight plans from storage.
