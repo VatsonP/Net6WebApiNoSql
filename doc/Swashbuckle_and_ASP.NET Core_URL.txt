@@ -1,0 +1,47 @@
+
+11 дек 2016 в 20:22
+Настройка Swashbuckle (Swagger) для WebAPI
+https://habr.com/ru/articles/317338/
+
+
+23 дек 2022 в 08:39
+Документирование ASP .Net Core Web API с помощью OpenAPI/Swagger. Библиотека Swashbuckle
+https://habr.com/ru/companies/simbirsoft/articles/707108/
+
+
+1. Learn  -> .NET ASP.NET Core -> API веб-приложений 
+
+Документация по веб-API ASP.NET Core с использованием Swagger (OpenAPI)
+https://learn.microsoft.com/ru-ru/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-7.0
+
+Начало работы с Swashbuckle и ASP.NET Core
+https://learn.microsoft.com/ru-ru/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-7.0&tabs=visual-studio
+
+Улучшение процесса разработки API с помощью документации по Swagger
+* 38 мин
+* Модуль
+* 7 единиц(ы)
+https://learn.microsoft.com/ru-ru/training/modules/improve-api-developer-experience-with-swagger/
+
+Сведения по документированию существующего API, написанные на C#/ASP.NET Core с помощью Swashbuckle, Swagger/OpenAPI и Swagger UI (пользовательского интерфейса Swagger).
+Цели обучения
+Из этого модуля вы узнаете:
+* сведения о Swashbuckle, OpenAPI и пользовательском интерфейсе Swagger;
+* как включить OpenAPI для C#/API ASP.NET Core;
+* как включить Swashbuckle для C#/API ASP.NET Core;
+* как с помощью OpenAPI создавать и просматривать документацию API.
+Предварительные требования
+* Опыт работы в разработке и внедрении REST API
+* Опыт работы в разработке основных приложений ASP.NET Core
+* Локальная установка пакета SDK для .NET
+* Visual Studio Code
+* Расширение C# для Visual Studio Code
+
+* Введение2 мин
+* Документирование веб-API ASP.NET Core с помощью инструментов Swagger5 мин
+* Упражнение. Включение документации OpenAPI в приложении Веб-API ASP.NET Core8 мин
+* Добавление документации OpenAPI с помощью аннотаций и комментариев XML4 мин
+* Упражнение. Настройка и расширение документации OpenAPI с помощью аннотаций и комментариев XML12 мин
+* Проверка знаний5 мин
+* Итоги2 мин
+
