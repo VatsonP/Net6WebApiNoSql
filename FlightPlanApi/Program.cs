@@ -5,6 +5,7 @@ using FlightPlanApi.Authentication;
 using FlightPlanApi.Data;
 using System.ComponentModel;
 using Amazon.Runtime.Internal.Transform;
+using FlightPlanApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,7 +51,9 @@ builder.Services.AddSwaggerGen(options =>
     options.EnableAnnotations();
 
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
+    options.IncludeXmlComments(xmlPath);
+    options.SchemaFilter<EnumTypesSchemaFilter>(xmlPath);
 });
 
 builder.Services.AddCors();
