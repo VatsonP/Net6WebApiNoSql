@@ -1,0 +1,1 @@
+https://localhost:3001/swagger/flightplan/swagger.json

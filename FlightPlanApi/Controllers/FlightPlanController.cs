@@ -21,6 +21,7 @@ namespace FlightPlanApi.Controllers
         [HttpGet]
         [Authorize]
         [SwaggerResponse((int)HttpStatusCode.NoContent, "no Flight plans have been filed with this system")]
+        [SwaggerResponse((int)HttpStatusCode.Unauthorized, "Unauthorized - the requested resource requires authentication")]
         public async Task<IActionResult> FlightPlanList()
         { 
             var flightPlanList = await _database.GetAllFlightPlans();
@@ -33,6 +34,19 @@ namespace FlightPlanApi.Controllers
             return Ok(flightPlanList);
         }
 
+        /// <summary>
+        /// Get Flight Plan data by Id from the system
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     GET /api/v1/flightplan/4d2cbd544b1e487f80e832057ed9b2a1
+        /// 
+        /// </remarks>
+        /// <param name="flightPlanId">The Identifier of the fight plan to be filed.</param>
+        /// <response code="401">Unauthorized - the requested resource requires authentication</response>
+        /// <response code="404">NotFound indicates that the requested resource does not exist on the server</response>
+        /// <returns></returns> 
         [HttpGet]
         [Authorize]
         [Route("{flightPlanId}")]
@@ -73,8 +87,10 @@ namespace FlightPlanApi.Controllers
         ///     }
         /// </remarks>
         /// <param name="flightPlan">The fight plan data to be filed.</param>
-        /// <response code="400">There is a problem with the flight plan data received by this system</response>
-        /// <response code="500">The flight plan is valid but this system cannot process it</response>
+        /// <response code="400">BadRequest - There is a problem with the flight plan data received by this system</response>
+        /// <response code="401">Unauthorized - the requested resource requires authentication</response>
+        /// <response code="404">NotFound indicates that the requested resource does not exist on the server</response>
+        /// <response code="500">InternalServerError - The flight plan is valid but this system cannot process it</response>
         /// <returns></returns>
         [HttpPost]
         [Authorize]
@@ -96,6 +112,15 @@ namespace FlightPlanApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Update flight plan by Id into the system
+        /// </summary>
+        /// <param name="flightPlan">The fight plan data to be filed.</param>
+        /// <response code="400">BadRequest - There is a problem with the flight plan data received by this system</response>
+        /// <response code="401">Unauthorized - the requested resource requires authentication</response>
+        /// <response code="404">NotFound indicates that the requested resource does not exist on the server</response>
+        /// <response code="500">InternalServerError - The flight plan is valid but this system cannot process it</response>
+        /// <returns></returns>
         [HttpPut]
         [Authorize]
         public async Task<IActionResult> UpdateFlightPlan(FlightPlan flightPlan)
@@ -107,6 +132,9 @@ namespace FlightPlanApi.Controllers
                 case TransactionResult.Success:
                     return Ok();
 
+                case TransactionResult.BadRequest:
+                    return StatusCode(StatusCodes.Status400BadRequest);
+
                 case TransactionResult.NotFound:
                     return StatusCode(StatusCodes.Status404NotFound);
 
@@ -115,6 +143,13 @@ namespace FlightPlanApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Delete flight plan by Id from the system
+        /// </summary>
+        /// <param name="flightPlanId">The Identifier of the fight plan to be filed.</param>
+        /// <response code="401">Unauthorized - the requested resource requires authentication</response>
+        /// <response code="404">NotFound indicates that the requested resource does not exist on the server</response>
+        /// <returns></returns>        
         [HttpDelete]
         [Authorize]
         [Route("{flightPlanId}")]
@@ -128,7 +163,15 @@ namespace FlightPlanApi.Controllers
                 return StatusCode(StatusCodes.Status404NotFound);
         }
 
+        /// <summary>
+        /// Get flight plan Departure Airport by Id from the system
+        /// </summary>
+        /// <param name="flightPlanId">The Identifier of the fight plan to be filed.</param>
+        /// <response code="401">Unauthorized - the requested resource requires authentication</response>
+        /// <response code="404">NotFound indicates that the requested resource does not exist on the server</response>
+        /// <returns></returns>  
         [HttpGet]
+        [Authorize]
         [Route("airport/departure/{flightPlanId}")]
         public async Task<IActionResult> GetFlightPlanDepartureAirport(string flightPlanId)
         {
@@ -142,6 +185,13 @@ namespace FlightPlanApi.Controllers
             return Ok(flightPlanById.DepartureAirport);
         }
 
+        /// <summary>
+        /// Get flight plan Route by Id from the system
+        /// </summary>
+        /// <param name="flightPlanId">The Identifier of the fight plan to be filed.</param>
+        /// <response code="401">Unauthorized - the requested resource requires authentication</response>
+        /// <response code="404">NotFound indicates that the requested resource does not exist on the server</response>
+        /// <returns></returns>  
         [HttpGet]
         [Authorize]
         [Route("route/{flightPlanId}")]
@@ -157,7 +207,15 @@ namespace FlightPlanApi.Controllers
             return Ok(flightPlanById.Route);
         }
 
+        /// <summary>
+        /// Get flight plan Time Enroute by Id from the system
+        /// </summary>
+        /// <param name="flightPlanId">The Identifier of the fight plan to be filed.</param>
+        /// <response code="401">Unauthorized - the requested resource requires authentication</response>
+        /// <response code="404">NotFound indicates that the requested resource does not exist on the server</response>
+        /// <returns></returns>  
         [HttpGet]
+        [Authorize]
         [Route("time/enroute/{flightPlanId}")]
         public async Task<IActionResult> GetFlightPlanTimeEnroute(string flightPlanId)
         {

@@ -1,0 +1,345 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Flight Plan API",
+    "description": "My Web Demo FlightPlan Project",
+    "version": "v3"
+  },
+  "paths": {
+    "/api/v1/flightplan": {
+      "get": {
+        "tags": [
+          "FlightPlan"
+        ],
+        "responses": {
+          "204": {
+            "description": "no Flight plans have been filed with this system"
+          },
+          "401": {
+            "description": "Unauthorized - the requested resource requires authentication"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "FlightPlan"
+        ],
+        "summary": "Update flight plan by Id into the system",
+        "requestBody": {
+          "description": "The fight plan data to be filed.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FlightPlan"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FlightPlan"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FlightPlan"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "BadRequest - There is a problem with the flight plan data received by this system"
+          },
+          "401": {
+            "description": "Unauthorized - the requested resource requires authentication"
+          },
+          "404": {
+            "description": "NotFound indicates that the requested resource does not exist on the server"
+          },
+          "500": {
+            "description": "InternalServerError - The flight plan is valid but this system cannot process it"
+          }
+        }
+      }
+    },
+    "/api/v1/flightplan/{flightPlanId}": {
+      "get": {
+        "tags": [
+          "FlightPlan"
+        ],
+        "summary": "Get Flight Plan data by Id from the system",
+        "description": "Sample request:\r\n\r\n    GET /api/v1/flightplan/4d2cbd544b1e487f80e832057ed9b2a1",
+        "parameters": [
+          {
+            "name": "flightPlanId",
+            "in": "path",
+            "description": "The Identifier of the fight plan to be filed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized - the requested resource requires authentication"
+          },
+          "404": {
+            "description": "NotFound indicates that the requested resource does not exist on the server"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "FlightPlan"
+        ],
+        "summary": "Delete flight plan by Id from the system",
+        "parameters": [
+          {
+            "name": "flightPlanId",
+            "in": "path",
+            "description": "The Identifier of the fight plan to be filed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized - the requested resource requires authentication"
+          },
+          "404": {
+            "description": "NotFound indicates that the requested resource does not exist on the server"
+          }
+        }
+      }
+    },
+    "/api/v1/flightplan/file": {
+      "post": {
+        "tags": [
+          "FlightPlan"
+        ],
+        "summary": "Files a new flight plan with the system",
+        "description": "Sample request:\r\n\r\n    POST /api/v1/flightplan/file\r\n    {\r\n        \"aircraft_identification\": \"N67SVS\",\r\n        \"aircraft_type\": \"PA-34 Piper Seneca\",\r\n        \"airspeed\": 128,\r\n        \"altitude\": 12000,\r\n        \"flight_type\": \"VFR\",\r\n        \"fuel_hours\": 3,\r\n        \"fuel_minutes\": 41,\r\n        \"departure_time\": \"2022-07-08T00:26:45Z\",\r\n        \"estimated_arrival_time\": \"2022-07-08T03:49:45Z\",\r\n        \"departing_airport\": \"KBXA\",\r\n        \"arrival_airport\": \"KNZY\",\r\n        \"route\": \"KBXA JOH J46 DMDUP J46 KNZY\",\r\n        \"remarks\": \"\",\r\n        \"number_onboard\": 4\r\n    }",
+        "requestBody": {
+          "description": "The fight plan data to be filed.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FlightPlan"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FlightPlan"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FlightPlan"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "BadRequest - There is a problem with the flight plan data received by this system"
+          },
+          "401": {
+            "description": "Unauthorized - the requested resource requires authentication"
+          },
+          "404": {
+            "description": "NotFound indicates that the requested resource does not exist on the server"
+          },
+          "500": {
+            "description": "InternalServerError - The flight plan is valid but this system cannot process it"
+          }
+        }
+      }
+    },
+    "/api/v1/flightplan/airport/departure/{flightPlanId}": {
+      "get": {
+        "tags": [
+          "FlightPlan"
+        ],
+        "summary": "Get flight plan Departure Airport by Id from the system",
+        "parameters": [
+          {
+            "name": "flightPlanId",
+            "in": "path",
+            "description": "The Identifier of the fight plan to be filed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized - the requested resource requires authentication"
+          },
+          "404": {
+            "description": "NotFound indicates that the requested resource does not exist on the server"
+          }
+        }
+      }
+    },
+    "/api/v1/flightplan/route/{flightPlanId}": {
+      "get": {
+        "tags": [
+          "FlightPlan"
+        ],
+        "summary": "Get flight plan Route by Id from the system",
+        "parameters": [
+          {
+            "name": "flightPlanId",
+            "in": "path",
+            "description": "The Identifier of the fight plan to be filed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized - the requested resource requires authentication"
+          },
+          "404": {
+            "description": "NotFound indicates that the requested resource does not exist on the server"
+          }
+        }
+      }
+    },
+    "/api/v1/flightplan/time/enroute/{flightPlanId}": {
+      "get": {
+        "tags": [
+          "FlightPlan"
+        ],
+        "summary": "Get flight plan Time Enroute by Id from the system",
+        "parameters": [
+          {
+            "name": "flightPlanId",
+            "in": "path",
+            "description": "The Identifier of the fight plan to be filed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized - the requested resource requires authentication"
+          },
+          "404": {
+            "description": "NotFound indicates that the requested resource does not exist on the server"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FlightPlan": {
+        "type": "object",
+        "properties": {
+          "flight_plan_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "aircraft_identification": {
+            "type": "string",
+            "nullable": true
+          },
+          "aircraft_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "airspeed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "altitude": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "flight_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "fuel_hours": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fuel_minutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "departure_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "estimated_arrival_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "departing_airport": {
+            "type": "string",
+            "nullable": true
+          },
+          "arrival_airport": {
+            "type": "string",
+            "nullable": true
+          },
+          "route": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks": {
+            "type": "string",
+            "nullable": true
+          },
+          "number_onboard": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "description": "Basic Authorization header using Bearer scheme (for My Web Demo FlightPlan Project)",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "basicAuth": [ ]
+    }
+  ]
+}
